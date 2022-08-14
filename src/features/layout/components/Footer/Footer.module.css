@@ -1,0 +1,6 @@
+.footer {
+  width: 100%;
+  height: var(--footerHeight);
+  padding: 32px 0;
+  text-align: center;
+}

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useAuth } from "../../features/auth";
 import { CatScreen } from "../CatScreen";
 import { LoginScreen } from "../LoginScreen";
 
 export const AppScreen = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const { isAuth } = useAuth();
 
-  return <div>{isAuth ? <CatScreen /> : <LoginScreen />}</div>;
+  return <>{isAuth ? <CatScreen /> : <LoginScreen />}</>;
 };
