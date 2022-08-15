@@ -11,10 +11,13 @@ export const Header = () => {
       <span>logo</span>
 
       {isAuth && (
-        <div>
+        <div className={Styles.loggedInBlock}>
           <span>userName</span>
-          <Button onClick={() => setIsAuth((state: any) => !state)}>
-            logout
+          <Button
+            className={Styles.logOutButton}
+            onClick={() => setIsAuth((state: any) => !state)}
+          >
+            Выйти
           </Button>
         </div>
       )}

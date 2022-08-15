@@ -1,11 +1,16 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import Styles from "./Button.module.css";
 
 type Props = {
   children: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
 };
 
-export const Button: React.FC<Props> = ({ children, onClick }) => {
-  return <button onClick={onClick}>{children}</button>;
+export const Button: React.FC<Props> = ({ children, onClick, className }) => {
+  return (
+    <button className={`${Styles.button} ${className}`} onClick={onClick}>
+      {children}
+    </button>
+  );
 };
