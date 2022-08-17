@@ -16,6 +16,7 @@ export const AuthWindow = () => {
     try {
       await AuthAPI.authenticate(inputData);
       setIsAuth((state: boolean) => !state);
+      localStorage.setItem("KittyIsAuth", "true");
     } catch (e) {
       console.log(e);
     }

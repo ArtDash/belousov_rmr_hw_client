@@ -15,10 +15,10 @@
 
 .logOutButton {
   padding: 8px;
-  background-color: lightblue;
+  background-color: #ff5555;
 }
 
 .logOutButton:hover {
-  background-color: blue;
+  background-color: #da4848;
   transition: all 0.4s ease;
 }

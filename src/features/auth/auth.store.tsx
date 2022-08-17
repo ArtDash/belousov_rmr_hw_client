@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useLayoutEffect,
+  useReducer,
+  useState,
+} from "react";
 
 const AuthContext = createContext<any>(null);
 
@@ -18,6 +24,10 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     (state: any, action: any) => ({ ...state, ...action }),
     initialInputData
   );
+
+  useLayoutEffect(() => {
+    if (localStorage.getItem("KittyIsAuth")) setIsAuth(true);
+  }, []);
 
   const providerValue = {
     isAuth,
