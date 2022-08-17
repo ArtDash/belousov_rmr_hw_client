@@ -13,7 +13,6 @@ const initialInputData = {
 };
 
 export const AuthProvider: React.FC<Props> = ({ children }) => {
-  const [token, setToken] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const [inputData, setInputData] = useReducer(
     (state: any, action: any) => ({ ...state, ...action }),
@@ -21,8 +20,6 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   );
 
   const providerValue = {
-    token,
-    setToken,
     isAuth,
     setIsAuth,
     inputData,

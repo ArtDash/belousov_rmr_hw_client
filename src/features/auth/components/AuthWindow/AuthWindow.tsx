@@ -4,19 +4,21 @@ import Styles from "./AuthWindow.module.css";
 // Components
 import { Button } from "../../../../ui-library/components/Button";
 import { Input } from "../../../../ui-library/components/Input";
+
+// Services and Business-logic
 import { useAuth } from "../../auth.store";
-import { API } from "../../../../infrastructure/api.service";
+import { AuthAPI } from "../../auth.service";
 
 export const AuthWindow = () => {
   const { setIsAuth, inputData, setInputData } = useAuth();
-  console.log(inputData);
 
-  const handleAuth = () => {
-    API.authenticate(inputData)
-      .then(() => fetch("/api/v1/profile"))
-      .then((res) => res.json())
-      .then(console.log)
-      .then(setIsAuth((state: any) => !state));
+  const handleAuth = async () => {
+    try {
+      await AuthAPI.authenticate(inputData);
+      setIsAuth((state: boolean) => !state);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

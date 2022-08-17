@@ -4,7 +4,7 @@ import React from "react";
 import Page from "../../features/layout";
 import { AuthWindow } from "../../features/auth";
 
-export const LoginScreen = () => {
+export const LoginScreen: React.FC = () => {
   return (
     <Page>
       <AuthWindow />

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useAuth } from "../../features/auth";
 import { CatScreen } from "../CatScreen";
 import { LoginScreen } from "../LoginScreen";

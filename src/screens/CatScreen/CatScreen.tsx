@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
+
+// Components
+import { KittyWindow } from "../../features/kitty";
 import Page from "../../features/layout";
-import { API } from "../../infrastructure/api.service";
 
-export const CatScreen = () => {
-  useEffect(() => {
-    const catImageResponce = API.getKitty();
-    console.log(catImageResponce);
-  }, []);
-
-  return <Page>CatScreen</Page>;
+export const CatScreen: React.FC = () => {
+  return (
+    <Page>
+      <KittyWindow />
+    </Page>
+  );
 };
