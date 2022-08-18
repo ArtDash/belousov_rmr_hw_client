@@ -10,9 +10,14 @@ export const Header = () => {
   const { isAuth, setIsAuth } = useAuth();
   const { username } = useUserProfile();
 
-  const handleLogOut = () => {
-    AuthAPI.logOut(null).then(setIsAuth((state: any) => !state));
-    localStorage.removeItem("KittyIsAuth");
+  const handleLogOut = async () => {
+    try {
+      await AuthAPI.logOut(null);
+      setIsAuth((state: any) => !state);
+      localStorage.removeItem("KittyIsAuth");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

@@ -1,5 +1,5 @@
 // Hooks
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../auth";
 
 // Services
@@ -9,7 +9,7 @@ export const useKittyImage = () => {
   const { setIsAuth } = useAuth();
   const [src, setSrc] = useState("");
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     KittyAPI.getKitty(null)
       .then((res) => res.data)
       .then(({ data: { src } }) => src)

@@ -1,29 +1,14 @@
-import {
-  createContext,
-  useContext,
-  useLayoutEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useLayoutEffect, useState } from "react";
+import { AuthContextType } from "./auth.type";
 
-const AuthContext = createContext<any>(null);
+const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-type Props = {
+type ProviderProps = {
   children: React.ReactNode;
 };
 
-const initialInputData = {
-  phone: "",
-  password: "",
-  email: "",
-};
-
-export const AuthProvider: React.FC<Props> = ({ children }) => {
+export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
-  const [inputData, setInputData] = useReducer(
-    (state: any, action: any) => ({ ...state, ...action }),
-    initialInputData
-  );
 
   useLayoutEffect(() => {
     if (localStorage.getItem("KittyIsAuth")) setIsAuth(true);
@@ -32,8 +17,6 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const providerValue = {
     isAuth,
     setIsAuth,
-    inputData,
-    setInputData,
   };
 
   return (

@@ -8,14 +8,21 @@
 }
 
 .loggedInBlock {
+  font-size: var(--fontVerySmall);
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
+.loggedInBlock > span {
+  flex: 1 1 70%;
+}
+
 .logOutButton {
+  flex: 1 1 30%;
   padding: 8px;
   background-color: #ff5555;
+  font-size: var(--fontVerySmall);
 }
 
 .logOutButton:hover {
