@@ -1,12 +1,18 @@
 import React from "react";
 
 import Styles from "./Header.module.css";
-import { AuthAPI } from "../../../auth/auth.service";
+
+// Hooks
 import { useAuth } from "../../../auth";
-import { Button } from "../../../../ui-library/components/Button";
 import { useUserProfile } from "../../../user";
 
-export const Header = () => {
+// Services
+import { AuthAPI } from "../../../auth/auth.service";
+
+// Components
+import { Button } from "../../../../ui-library/components/Button";
+
+export const Header: React.FC = () => {
   const { isAuth, setIsAuth } = useAuth();
   const { username } = useUserProfile();
 

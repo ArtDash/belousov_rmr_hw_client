@@ -39,7 +39,6 @@ export const AuthForm = () => {
 
   const handleAuth = handleSubmit(async (inputData) => {
     try {
-      console.log(inputData);
       await AuthAPI.authenticate(inputData);
       setIsAuth((state: boolean) => !state);
       localStorage.setItem("KittyIsAuth", "true");
