@@ -13,7 +13,7 @@ export const useUserProfile = () => {
 
   useEffect(() => {
     if (isAuth) {
-      UserAPI.getUserProfile(null).then(({ data: { name } }: UserDTO) =>
+      UserAPI.getUserProfile(null).then(({ name }) =>
         setUserData((state) => ({ ...state, username: name }))
       );
     }

@@ -1,4 +1,4 @@
-import { axios } from "../../utils/axios";
+import { axios } from "../../infrastructure/request/axios";
 import { Request } from "../../utils/types/request";
 
 export class UserAPI {

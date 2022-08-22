@@ -11,7 +11,7 @@ export const useKittyImage = () => {
 
   useEffect(() => {
     KittyAPI.getKitty(null)
-      .then(({ data: { src } }) => src)
+      .then(({ src }) => src)
       .then(setSrc);
   }, [setIsAuth]);
 
