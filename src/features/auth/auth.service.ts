@@ -1,11 +1,6 @@
-import axios from "axios";
+import { axios } from "../../utils/axios";
 import { Request } from "../../utils/types/request";
-
-type AuthCredentials = {
-  phone: string;
-  email: string;
-  password: string;
-};
+import { AuthCredentials } from "./auth.entity";
 
 export class AuthAPI {
   static authenticate: Request<AuthCredentials> = ({

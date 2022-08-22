@@ -13,15 +13,9 @@ export const useUserProfile = () => {
 
   useEffect(() => {
     if (isAuth) {
-      UserAPI.getUserProfile(null)
-        .then((res) => res.data)
-        .then(({ data: { name } }: UserDTO) =>
-          setUserData((state) => ({ ...state, username: name }))
-        )
-        .catch(() => {
-          setIsAuth(false);
-          localStorage.removeItem("KittyIsAuth");
-        });
+      UserAPI.getUserProfile(null).then(({ data: { name } }: UserDTO) =>
+        setUserData((state) => ({ ...state, username: name }))
+      );
     }
   }, [isAuth, setIsAuth]);
 

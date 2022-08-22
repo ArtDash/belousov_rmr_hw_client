@@ -1,51 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import Styles from "./AuthForm.module.css";
 
-// API
-import { AuthAPI } from "../../auth.service";
-
 // Hooks
-import { useAuth } from "../../auth.store";
 import { useForm } from "react-hook-form";
 
 // Components
+import { ValidationErrors } from "../../../error";
 import { Button } from "../../../../ui-library/components/Button";
 import { Input } from "../../../../ui-library/components/Input";
 
-// Types
+// Types and Entities
+import { AuthCredentials } from "../../auth.entity";
 import { ErrorValidationMessage } from "../../../error";
 
 // Utils
 import { ValidationRegExp } from "../../auth.utils";
-import { ValidationErrors } from "../../../error";
+import { useLogIn } from "../../auth.hooks";
 
-const initialInputData = {
+const initialInputData: AuthCredentials = {
   phone: "",
   password: "",
   email: "",
 };
 
-export const AuthForm = () => {
-  const [authError, setAuthError] = useState(false);
-  const { setIsAuth } = useAuth();
+export const AuthForm: React.FC = () => {
+  const { logIn, authError } = useLogIn();
   const {
     register,
     handleSubmit,
-    formState: { dirtyFields, errors },
-  } = useForm({ defaultValues: initialInputData });
+    formState: { errors },
+  } = useForm({ defaultValues: initialInputData, reValidateMode: "onSubmit" });
 
-  const isActiveButton = Object.keys(dirtyFields).length === 3;
-  const activeButtonClassName = isActiveButton ? Styles.authButtonActive : null;
-
-  const handleAuth = handleSubmit(async (inputData) => {
-    try {
-      await AuthAPI.authenticate(inputData);
-      setIsAuth((state: boolean) => !state);
-      localStorage.setItem("KittyIsAuth", "true");
-    } catch {
-      setAuthError(true);
-    }
-  });
+  const handleAuth = handleSubmit((inputData) => logIn(inputData));
 
   return (
     <form className={Styles.forms} onSubmit={handleAuth}>
@@ -55,7 +41,7 @@ export const AuthForm = () => {
         placeholder="Phone"
         type="tel"
         {...register("phone", {
-          required: true,
+          required: ErrorValidationMessage.NO_PHONE,
           pattern: {
             value: ValidationRegExp.PHONE,
             message: ErrorValidationMessage.WRONG_PHONE,
@@ -67,7 +53,7 @@ export const AuthForm = () => {
         placeholder="Email"
         type="email"
         {...register("email", {
-          required: true,
+          required: ErrorValidationMessage.NO_EMAIL,
           pattern: {
             value: ValidationRegExp.EMAIL,
             message: ErrorValidationMessage.WRONG_EMAIL,
@@ -79,7 +65,7 @@ export const AuthForm = () => {
         placeholder="Password"
         type="password"
         {...register("password", {
-          required: true,
+          required: ErrorValidationMessage.NO_PASSWORD,
           pattern: {
             value: ValidationRegExp.PASSWORD,
             message: ErrorValidationMessage.WRONG_PASSWORD,
@@ -87,12 +73,7 @@ export const AuthForm = () => {
         })}
       />
 
-      <Button
-        className={`${Styles.authButton} ${activeButtonClassName}`}
-        disabled={!isActiveButton}
-      >
-        Войти
-      </Button>
+      <Button className={`${Styles.authButton}`}>Войти</Button>
     </form>
   );
 };

@@ -3,28 +3,16 @@ import React from "react";
 import Styles from "./Header.module.css";
 
 // Hooks
-import { useAuth } from "../../../auth";
+import { useAuth, useLogOut } from "../../../auth";
 import { useUserProfile } from "../../../user";
-
-// Services
-import { AuthAPI } from "../../../auth/auth.service";
 
 // Components
 import { Button } from "../../../../ui-library/components/Button";
 
 export const Header: React.FC = () => {
-  const { isAuth, setIsAuth } = useAuth();
+  const { logOut } = useLogOut();
+  const { isAuth } = useAuth();
   const { username } = useUserProfile();
-
-  const handleLogOut = async () => {
-    try {
-      await AuthAPI.logOut(null);
-      setIsAuth((state: any) => !state);
-      localStorage.removeItem("KittyIsAuth");
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   return (
     <header className={Styles.header}>
@@ -33,7 +21,7 @@ export const Header: React.FC = () => {
       {isAuth && (
         <div className={Styles.loggedInBlock}>
           <span>Привет, {username}!</span>
-          <Button className={Styles.logOutButton} onClick={handleLogOut}>
+          <Button className={Styles.logOutButton} onClick={logOut}>
             Выйти
           </Button>
         </div>

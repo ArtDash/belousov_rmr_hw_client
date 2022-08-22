@@ -11,13 +11,8 @@ export const useKittyImage = () => {
 
   useEffect(() => {
     KittyAPI.getKitty(null)
-      .then((res) => res.data)
       .then(({ data: { src } }) => src)
-      .then(setSrc)
-      .catch(() => {
-        setIsAuth(false);
-        localStorage.removeItem("KittyIsAuth");
-      });
+      .then(setSrc);
   }, [setIsAuth]);
 
   return { src };

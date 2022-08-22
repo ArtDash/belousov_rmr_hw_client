@@ -13,15 +13,7 @@
 .authButton {
   margin-top: 56px;
   height: 46px;
-  color: gray;
-  transition: all 0.2s;
-}
-
-.authButton:disabled {
-  pointer-events: none;
-}
-
-.authButtonActive {
   color: white;
   background-color: var(--gradientColorBlue);
+  transition: all 0.2s;
 }
