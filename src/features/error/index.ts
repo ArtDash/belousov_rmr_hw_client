@@ -1,3 +1,3 @@
 export { ErrorMessage } from "./components/ErrorMessage";
 export { ValidationErrors } from "./components/ValidationErrors";
-export { ErrorValidationMessage } from "./error.type";
+export { ErrorValidationMessage, RequestErrors } from "./error.type";

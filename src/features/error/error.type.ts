@@ -7,3 +7,8 @@ export enum ErrorValidationMessage {
   WRONG_PASSWORD = "Пароль должен содержать минимум 4 символа и состоять только из букв и цифр",
   BAD_REQUEST = "Что-то пошло не так! Возможно вы ввели неправильные данные или данный пользователь не зарегистрирован",
 }
+
+export enum RequestErrors {
+  FORBIDDEN = 403,
+  UNAUTHORIZED = 401,
+}
