@@ -4,17 +4,19 @@
 
 ## Использованный стек
 
- - ReactJS
- - TypeScript
- - ContextAPI
+- ReactJS
+- TypeScript
+- ContextAPI
 
 ### Запуск проекта
-  ```
-    yarn
-    yarn start
-  ```
+
+```
+  yarn
+  yarn start
+```
 
 ### Запуск линтера
-  ```
+
+```
   yarn lint
-  ```
+```
