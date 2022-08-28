@@ -1,3 +1,4 @@
+import React from "react";
 import { AppScreen } from "./screens/AppScreen";
 
 // Global styles
@@ -8,7 +9,7 @@ import "./ui-library/colors.css";
 import { AuthProvider } from "./features/auth";
 import { RequestService } from "./infrastructure/request";
 
-function App() {
+const App: React.FC = () => {
   return (
     <AuthProvider>
       <RequestService>
@@ -16,6 +17,6 @@ function App() {
       </RequestService>
     </AuthProvider>
   );
-}
+};
 
 export default App;

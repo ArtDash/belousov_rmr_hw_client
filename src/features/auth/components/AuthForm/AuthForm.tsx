@@ -5,13 +5,12 @@ import Styles from "./AuthForm.module.css";
 import { useForm } from "react-hook-form";
 
 // Components
-import { ValidationErrors } from "../../../error";
+import { ValidationErrors, ErrorValidationMessage } from "../../../error";
 import { Button } from "../../../../ui-library/components/Button";
 import { Input } from "../../../../ui-library/components/Input";
 
-// Types and Entities
+// Entities
 import { AuthCredentials } from "../../auth.entity";
-import { ErrorValidationMessage } from "../../../error";
 
 // Utils
 import { ValidationRegExp } from "../../auth.utils";
@@ -20,7 +19,7 @@ import { useLogIn } from "../../auth.hooks";
 const initialInputData: AuthCredentials = {
   phone: "",
   password: "",
-  email: "",
+  email: ""
 };
 
 export const AuthForm: React.FC = () => {
@@ -28,10 +27,10 @@ export const AuthForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm({ defaultValues: initialInputData, reValidateMode: "onSubmit" });
 
-  const handleAuth = handleSubmit((inputData) => logIn(inputData));
+  const handleAuth = handleSubmit(async (inputData) => await logIn(inputData));
 
   return (
     <form className={Styles.forms} onSubmit={handleAuth}>
@@ -44,8 +43,8 @@ export const AuthForm: React.FC = () => {
           required: ErrorValidationMessage.NO_PHONE,
           pattern: {
             value: ValidationRegExp.PHONE,
-            message: ErrorValidationMessage.WRONG_PHONE,
-          },
+            message: ErrorValidationMessage.WRONG_PHONE
+          }
         })}
       />
       <Input
@@ -56,8 +55,8 @@ export const AuthForm: React.FC = () => {
           required: ErrorValidationMessage.NO_EMAIL,
           pattern: {
             value: ValidationRegExp.EMAIL,
-            message: ErrorValidationMessage.WRONG_EMAIL,
-          },
+            message: ErrorValidationMessage.WRONG_EMAIL
+          }
         })}
       />
       <Input
@@ -68,8 +67,8 @@ export const AuthForm: React.FC = () => {
           required: ErrorValidationMessage.NO_PASSWORD,
           pattern: {
             value: ValidationRegExp.PASSWORD,
-            message: ErrorValidationMessage.WRONG_PASSWORD,
-          },
+            message: ErrorValidationMessage.WRONG_PASSWORD
+          }
         })}
       />
 

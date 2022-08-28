@@ -2,7 +2,7 @@ import React from "react";
 import { useKittyImage } from "../../kitty.hooks";
 import Styles from "./KittyWindow.module.css";
 
-export const KittyWindow = () => {
+export const KittyWindow: React.FC = () => {
   const { src } = useKittyImage();
 
   return (

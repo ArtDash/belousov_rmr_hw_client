@@ -3,17 +3,17 @@ import { Request } from "../../utils/types/request";
 import { AuthCredentials } from "./auth.entity";
 
 export class AuthAPI {
-  static authenticate: Request<AuthCredentials> = ({
+  static authenticate: Request<AuthCredentials> = async ({
     phone,
     email,
-    password,
+    password
   }) => {
-    return axios.post("/api/v1/login", {
-      email: email,
-      phone: phone,
-      password: password,
+    return await axios.post("/api/v1/login", {
+      email,
+      phone,
+      password
     });
   };
 
-  static logOut: Request = () => axios.post("/api/v1/logout");
+  static logOut: Request = async () => await axios.post("/api/v1/logout");
 }

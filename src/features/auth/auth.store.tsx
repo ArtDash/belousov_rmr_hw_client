@@ -1,4 +1,9 @@
-import { createContext, useContext, useLayoutEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useLayoutEffect,
+  useState
+} from "react";
 import { USER_IS_AUTH_LS } from "./auth.constants";
 import { AuthContextType } from "./auth.type";
 
@@ -12,14 +17,14 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
 
   useLayoutEffect(() => {
-    if (localStorage.getItem(USER_IS_AUTH_LS)) {
+    if (localStorage.getItem(USER_IS_AUTH_LS) === "true") {
       setIsAuth(true);
     }
   }, []);
 
   const providerValue = {
     isAuth,
-    setIsAuth,
+    setIsAuth
   };
 
   return (
@@ -29,4 +34,4 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = (): AuthContextType => useContext(AuthContext);

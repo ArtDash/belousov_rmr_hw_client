@@ -7,13 +7,13 @@ type User = {
   username: string;
 };
 
-export const useUserProfile = () => {
+export const useUserProfile = (): User => {
   const { isAuth, setIsAuth } = useAuth();
   const [userData, setUserData] = useState({} as User);
 
   useEffect(() => {
     if (isAuth) {
-      UserAPI.getUserProfile(null).then(({ data: { name } }) =>
+      void UserAPI.getUserProfile(null).then(({ data: { name } }: UserDTO) =>
         setUserData((state) => ({ ...state, username: name }))
       );
     }

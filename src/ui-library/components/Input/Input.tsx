@@ -21,3 +21,5 @@ export const Input = React.forwardRef<HTMLDivElement, InputProps>(
     </div>
   )
 );
+
+Input.displayName = "Input";

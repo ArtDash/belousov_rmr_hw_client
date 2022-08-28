@@ -19,11 +19,15 @@ export const ValidationErrors: React.FC<Props> = ({ errors, authError }) => {
       {authError && (
         <ErrorMessage message={ErrorValidationMessage.BAD_REQUEST} />
       )}
-      {errors.email?.message && <ErrorMessage message={errors.email.message} />}
-      {errors.password?.message && (
+      {errors.email?.message !== undefined && (
+        <ErrorMessage message={errors.email.message} />
+      )}
+      {errors.password?.message !== undefined && (
         <ErrorMessage message={errors.password.message} />
       )}
-      {errors.phone?.message && <ErrorMessage message={errors.phone.message} />}
+      {errors.phone?.message !== undefined && (
+        <ErrorMessage message={errors.phone.message} />
+      )}
     </div>
   );
 };
