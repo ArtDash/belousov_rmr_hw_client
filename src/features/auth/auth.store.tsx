@@ -2,7 +2,7 @@ import React, {
   createContext,
   useContext,
   useLayoutEffect,
-  useState,
+  useState
 } from "react";
 import { USER_IS_AUTH_LS } from "./auth.constants";
 import { AuthContextType } from "./auth.type";
@@ -24,7 +24,7 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
 
   const providerValue = {
     isAuth,
-    setIsAuth,
+    setIsAuth
   };
 
   return (
